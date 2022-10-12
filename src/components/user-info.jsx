@@ -22,7 +22,7 @@ const Userinfo = () => {
         </Text>
         <Text className="phone-text">{phoneNumber}</Text>
       </div>
-      <Button className="filter-button" typeName="primary">
+      <Button className="confirm filter-button" typeName="primary">
         Xác nhận
       </Button>
     </Box>
