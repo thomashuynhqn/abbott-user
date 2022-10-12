@@ -1,0 +1,13 @@
+.wrapper {
+  height: 250px;
+  background-color: var(--zmp-theme-color);
+  border-radius: 10px;
+  &-form {
+    align-items: center;
+  }
+}
+.avatar-img {
+  height: 100px;
+  width: 100px;
+  align-items: center;
+}
