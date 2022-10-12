@@ -8,11 +8,12 @@
 
   background-color: var(--zmp-theme-color);
   .avatar {
-    height: 100px;
+    height: auto;
     width: 100px;
     padding: 15px;
   }
   .text-zone {
-    padding: 15px;
+    padding: 0px 15px;
+    text-align: center;
   }
 }
