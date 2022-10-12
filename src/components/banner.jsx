@@ -1,15 +1,15 @@
-import React from "react";
-import backgroundStore from "../static/images/background-store.png";
-import "../css/banner.scss";
+// import React from "react";
 
-const Banner = () => {
-  return (
-    <div className="banner">
-      <img src={backgroundStore} />
-    </div>
-  );
-};
+// import "../css/banner.scss";
 
-Banner.displayName = "zmp-banner";
+// const Banner = () => {
+//   return (
+//     <div className="banner">
+//       <img src={backgroundStore} />
+//     </div>
+//   );
+// };
 
-export default Banner;
+// Banner.displayName = "zmp-banner";
+
+// export default Banner;
