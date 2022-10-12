@@ -6,8 +6,7 @@
     align-items: center;
   }
 }
-.avatar-img {
-  height: 100px;
-  width: 100px;
-  align-items: center;
+.wrapper .avatar-image {
+  display: flex;
+  justify-content: center;
 }

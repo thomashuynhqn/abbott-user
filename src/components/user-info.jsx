@@ -16,7 +16,7 @@ const Userinfo = () => {
       alignItems="center"
     >
       <div className="wrapper-form">
-        <Avatar size={98} className="avatar-img " src={user.avatar}></Avatar>
+        <Avatar size={98} src={user.avatar}></Avatar>
 
         <div className="user-text">
           {user.name ? <>Chào, {user.name}!</> : "..."}
