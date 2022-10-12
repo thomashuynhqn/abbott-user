@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Avatar, Text, useStore } from "zmp-framework/react";
+import { Box, Avatar, Text, useStore, Input } from "zmp-framework/react";
 import "../css/main.scss";
 
 const Userinfo = () => {
@@ -9,10 +9,13 @@ const Userinfo = () => {
   return (
     <Box className="wrapper" mx="4" mb="4" mt="5">
       <Avatar size={98} src={user.avatar}></Avatar>
-      <div className="user-text">
-        {user.name ? <>Chào, {user.name}!</> : "..."}
+      <div className="text-zone">
+        <div className="user-text">
+          {user.name ? <>Chào, {user.name}!</> : "..."}
+        </div>
+        <div className="phone-text">{phoneNumber}</div>
       </div>
-      <div className="phone-text">{phoneNumber}</div>
+      <Input>Hi</Input>
     </Box>
   );
 };
