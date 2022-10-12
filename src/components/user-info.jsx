@@ -1,5 +1,12 @@
 import React from "react";
-import { Box, Avatar, Text, useStore, Input } from "zmp-framework/react";
+import {
+  Box,
+  Avatar,
+  Text,
+  useStore,
+  Input,
+  Button,
+} from "zmp-framework/react";
 import "../css/main.scss";
 
 const Userinfo = () => {
@@ -10,12 +17,14 @@ const Userinfo = () => {
     <Box className="wrapper" mx="4" mb="4" mt="5">
       <Avatar size={98} src={user.avatar}></Avatar>
       <div className="text-zone">
-        <div className="user-text">
+        <Text className="user-text">
           {user.name ? <>Chào, {user.name}!</> : "..."}
-        </div>
-        <div className="phone-text">{phoneNumber}</div>
+        </Text>
+        <Text className="phone-text">{phoneNumber}</Text>
       </div>
-      <Input>Hi</Input>
+      <Button className="filter-button" typeName="primary">
+        Xác nhận
+      </Button>
     </Box>
   );
 };
