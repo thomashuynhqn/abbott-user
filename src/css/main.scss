@@ -1,12 +1,16 @@
 .wrapper {
   height: 250px;
-  background-color: var(--zmp-theme-color);
   border-radius: 10px;
-  &-form {
-    align-items: center;
-  }
-}
-.wrapper .avatar-image {
+
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+
+  background-color: var(--zmp-theme-color);
+}
+
+.avatar {
+  height: 100px;
+  width: 100px;
+  padding: 15px;
 }

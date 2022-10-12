@@ -7,22 +7,12 @@ const Userinfo = () => {
   const phoneNumber = useStore("phone");
 
   return (
-    <Box
-      className="wrapper"
-      mx="4"
-      mb="4"
-      mt="5"
-      flexDirection="column"
-      alignItems="center"
-    >
-      <div className="wrapper-form">
-        <Avatar size={98} src={user.avatar}></Avatar>
-
-        <div className="user-text">
-          {user.name ? <>Chào, {user.name}!</> : "..."}
-        </div>
-        <div className="phone-text">{phoneNumber}</div>
+    <Box className="wrapper" mx="4" mb="4" mt="5">
+      <Avatar size={98} src={user.avatar}></Avatar>
+      <div className="user-text">
+        {user.name ? <>Chào, {user.name}!</> : "..."}
       </div>
+      <div className="phone-text">{phoneNumber}</div>
     </Box>
   );
 };
