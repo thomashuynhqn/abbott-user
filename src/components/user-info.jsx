@@ -15,16 +15,20 @@ const Userinfo = () => {
 
   return (
     <Box className="wrapper" mx="4" mb="4" mt="5">
-      <Avatar size={98} src={user.avatar}></Avatar>
-      <div className="text-zone">
+      <Avatar src={user.avatar}></Avatar>
+      <form className="text-zone" method="POST" target="_blank">
         <Text className="user-text">
           {user.name ? <>Chào, {user.name}!</> : "..."}
         </Text>
         <Text className="phone-text">{phoneNumber}</Text>
-      </div>
-      <Button className="confirm filter-button" typeName="primary">
-        Xác nhận
-      </Button>
+        <Button
+          className="confirm filter-button"
+          typeName="primary"
+          type="submit"
+        >
+          Xác nhận
+        </Button>
+      </form>
     </Box>
   );
 };

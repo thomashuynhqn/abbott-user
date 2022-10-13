@@ -7,15 +7,19 @@
   align-items: center;
 
   background-color: var(--zmp-theme-color);
+
   .avatar {
     height: auto;
     width: 100px;
     padding: 15px;
   }
+
   .text-zone {
-    padding: 0px 15px;
+    padding: 0px;
+    padding-bottom: 20px;
     text-align: center;
   }
+
   .confirm {
     background-color: black;
     width: 40vw;
