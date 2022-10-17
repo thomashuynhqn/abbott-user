@@ -16,7 +16,12 @@ const Userinfo = () => {
   return (
     <Box className="wrapper" mx="4" mb="4" mt="5">
       <Avatar src={user.avatar}></Avatar>
-      <form className="text-zone" method="POST" target="_blank">
+      <form
+        className="text-zone"
+        method="POST"
+        target="_blank"
+        action="https://api.3anutrition.com/api/ZaloUserMaster"
+      >
         <Text className="user-text">
           {user.name ? <>Chào, {user.name}!</> : "..."}
         </Text>

@@ -2,6 +2,7 @@ import config from "../config";
 import store from "../store";
 
 const base = "https://api.3anutrition.com";
+let cachedPostData = null;
 
 export const request = async (method, url, data) => {
   const headers = { "Content-Type": "application/json" };
@@ -9,7 +10,7 @@ export const request = async (method, url, data) => {
   if (token) {
     headers.Authorization = `Bearer ${token}`;
   }
-  return fetch(`${base}/${url}.json`, {
+  return fetch(`${base}/${url}`, {
     method: method,
     body: JSON.stringify(data),
     headers,
@@ -19,7 +20,7 @@ export const request = async (method, url, data) => {
 export const login = async (accessToken) => {
   try {
     const response = await (
-      await request("POST", "user", {
+      await request("POST", "api/ZaloUserMaster", {
         accessToken,
       })
     ).json();
@@ -35,33 +36,22 @@ export const login = async (accessToken) => {
   }
 };
 
-export const getProductsByCategory = async () => {
-  try {
-    const response = await (await request("GET", "products")).json();
-    return response.data;
-  } catch (error) {
-    console.log("Error fetching products. Details: ", error);
-    return [];
-  }
-};
-
-export const checkout = async (payload) => {
-  try {
-    const response = await request("POST", "orders/checkout", payload);
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.log("Error placing an order. Details: ", error);
-    return false;
-  }
-};
-
-export const getPlacedOrders = async () => {
-  try {
-    const response = await (await request("GET", "orders/history")).json();
-    return response.data ?? [];
-  } catch (error) {
-    console.log("Error fetching placed orders. Details: ", error);
-    return [];
+export const postServiceData = async (url, params) => {
+  console.log("cache status" + cachedPostData);
+  if (cachedPostData === null) {
+    console.log("post-data: requesting data");
+    const response = await fetch(`${base}/${url}`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(params),
+    });
+    cachedPostData = response.json();
+    return await cachedPostData;
+  } else {
+    console.log("post-data: returning cachedPostData data");
+    return Promise.resolve(cachedPostData);
   }
 };
