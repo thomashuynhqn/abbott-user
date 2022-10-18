@@ -1,27 +1,40 @@
 import React from "react";
-import {
-  Box,
-  Avatar,
-  Text,
-  useStore,
-  Input,
-  Button,
-} from "zmp-framework/react";
+import { Box, Avatar, Text, useStore, Button } from "zmp-framework/react";
 import "../css/main.scss";
 
 const Userinfo = () => {
   const user = useStore("user");
   const phoneNumber = useStore("phone");
 
+  const handleSendUser = async () => {
+    try {
+      const response = await fetch(
+        "https://api.3anutrition.com/api/ZaloUserMaster",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            phone: phoneNumber,
+            zaloid: user.name,
+            brand: "",
+            oa_id: "",
+          }),
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+        }
+      );
+      return response;
+    } catch (error) {
+      console.log("Error to fetch. Details: ", error);
+      return false;
+    }
+  };
+
   return (
     <Box className="wrapper" mx="4" mb="4" mt="5">
       <Avatar src={user.avatar}></Avatar>
-      <form
-        className="text-zone"
-        method="POST"
-        target="_blank"
-        action="https://api.3anutrition.com/api/ZaloUserMaster"
-      >
+      <form className="text-zone" onClick={handleSendUser}>
         <Text className="user-text">
           {user.name ? <>Chào, {user.name}!</> : "..."}
         </Text>

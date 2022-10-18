@@ -1,8 +1,7 @@
 import { createStore } from "zmp-core/lite";
-import { zmp } from "zmp-framework/react";
+import { loadUserFromCache, saveUserToCache } from "./services/storage";
+import { getAccessToken, getUser } from "./services/zalo";
 import { login } from "./services/user-info";
-import { loadAddresses, saveUserToCache } from "./services/storage";
-import { follow, getUser } from "./services/zalo";
 
 const store = createStore({
   state: {
@@ -15,55 +14,6 @@ const store = createStore({
       },
     ],
     phone: "",
-    showCheckout: false,
-    shipping: false,
-    categories: [
-      {
-        value: "",
-        title: "Tất cả sản phẩm",
-      },
-      {
-        value: "Ensure Gold",
-        title: "Ensure Gold",
-      },
-      {
-        value: "Glucerna",
-        title: "Glucerna",
-      },
-    ],
-    loadingProducts: true,
-    products: [],
-    loadingOrders: true,
-    orders: [],
-    selectedAddress: null,
-    shops: [
-      {
-        selected: true,
-        name: "Gian hàng chính hãng Abbott",
-        address: "",
-        open: { hour: 8, minute: 0 },
-        close: { hour: 17, minute: 0 },
-      },
-    ],
-    cart: [],
-    discounts: [
-      {
-        code: "GIAM20K",
-        name: "Lorem",
-        expireDate: "10/05/2021",
-        image: "discount-1",
-      },
-      {
-        code: "GIAM35%",
-        name: "Lorem",
-        expireDate: "10/05/2021",
-        image: "discount-2",
-      },
-    ],
-    selectedDiscount: null,
-    addresses: [],
-    shippingTime: [new Date(), new Date().getHours(), new Date().getMinutes()],
-    note: "",
   },
   getters: {
     user({ state }) {
@@ -85,9 +35,17 @@ const store = createStore({
       state.phone = number;
     },
     async login({ dispatch }) {
-      const user = await getUser();
-      if (user) {
-        dispatch("setUser", user);
+      const cachedUser = await loadUserFromCache();
+      if (cachedUser) {
+        dispatch("setUser", cachedUser);
+      }
+      const token = await getAccessToken();
+      const success = await login(token);
+      if (success) {
+        const user = await getUser();
+        if (user) {
+          dispatch("setUser", user);
+        }
       }
     },
   },
