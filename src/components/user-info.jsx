@@ -1,29 +1,30 @@
 import React from "react";
 import { Box, Avatar, Text, useStore, Button } from "zmp-framework/react";
+import axios from "axios";
 import "../css/main.scss";
 
 const Userinfo = () => {
   const user = useStore("user");
   const phoneNumber = useStore("phone");
 
+  const postUrl = "https://api.3anutrition.com/api/ZaloUserMaster";
+
   const handleSendUser = async () => {
     try {
-      const response = await fetch(
-        "https://api.3anutrition.com/api/ZaloUserMaster",
-        {
-          method: "POST",
-          body: JSON.stringify({
-            phone: phoneNumber,
-            zaloid: user.name,
-            brand: "",
-            oa_id: "",
-          }),
-          headers: {
-            "Content-Type": "application/json",
-            Accept: "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${postUrl}`, {
+        method: "POST",
+        mode: "cors",
+        body: JSON.stringify({
+          phone: phoneNumber,
+          zaloid: user.name,
+          brand: "",
+          oa_id: "",
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          accept: "application/json",
+        },
+      });
       return response;
     } catch (error) {
       console.log("Error to fetch. Details: ", error);
