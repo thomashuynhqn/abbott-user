@@ -1,6 +1,5 @@
 import React from "react";
 import { Box, Avatar, Text, useStore, Button } from "zmp-framework/react";
-import axios from "axios";
 import "../css/main.scss";
 
 const Userinfo = () => {
